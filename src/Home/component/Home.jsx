@@ -13,8 +13,10 @@ class Home extends Component {
         this.handlePreRequisiteChange = this.handlePreRequisiteChange.bind(this);
         this.handleUnitInputChange = this.handleUnitInputChange.bind(this);
         this.addClass = this.addClass.bind(this);
+        this.handlePreReqInputChange = this.handlePreReqInputChange.bind(this);
         this.generateSchedule = this.generateSchedule.bind(this);
         this.logout = this.logout.bind(this);
+        //this.addPreReq = this.addPreReq.bind(this);
         this.state = {
             college: "",
             oneClass: "",
@@ -22,7 +24,7 @@ class Home extends Component {
             classes: [],
             preReqList: [],
             nonPreReqList: [],
-            
+            preReqName: "",
             FreshFall: [],
             FreshWinter: [],
             FreshSpring: [],
@@ -55,6 +57,15 @@ class Home extends Component {
         });
 
     }
+    handlePreReqInputChange(event){
+        var temp = event.target.value;
+        var courses = temp.split("\n");
+        this.setState({
+            preReqList: courses,
+            preReqName: temp,
+        });
+
+    }
     handleUnitInputChange(event){
         this.setState({
             toShow: true,
@@ -74,19 +85,19 @@ class Home extends Component {
         }
     }
     addClass(){
-        if(this.state.oneClass.length > 0){
-            var newCourse = new Course(this.state.preReq, 4, this.state.oneClass);
+        if(this.state.oneClass.length > 0 ){
+            var newCourse = new Course(this.state.preReq, 4, this.state.oneClass, this.state.preReqList);
             const names = this.state.classes;
             names.push(newCourse);
             this.setState({
                 classes: names,
                 oneClass: "",
+                preReqList: [],
             });
         }else{
             //render a popu
         }
     }
-
     addUnitCap(){
         this.setState({
             toShow: false,
@@ -94,16 +105,18 @@ class Home extends Component {
     }
     generateSchedule(){
         for(let i = 0; i < this.state.classes.length; i++){
-            if(this.state.classes[i].preReq){
-                this.state.preReqList.push(this.state.classes[i]);
-            }else{
+            if(this.state.classes[i].prereqs.length === 0){
                 this.state.nonPreReqList.push(this.state.classes[i]);
+            }else{
+                this.state.preReqList.push(this.state.classes[i]);
             }
         }
         //user enters a class
         //class only has 1 prereq
         //list of pre requisites
-
+        for(let i = 0; i < this.state.nonPreReqList.length; i++){
+            
+        }
     }
     logout(){
         fire.auth().signOut();
@@ -120,15 +133,15 @@ class Home extends Component {
                 <div class="form-group">
                     <label >Class {this.state.classes.length}</label>
                     <textarea className = "form-control post-editor-input" value={this.state.oneClass} onChange={ this.handleClassInputChange }/>
-                    <button type="button" class="btn btn-primary" onClick = { this.addClass } > Add Class Name </button>
+                    {!this.state.preReq ? <button type="button" class="btn btn-primary" onClick = { this.addClass } > Add Class Name </button> : null}
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" onChange={ this.handlePreRequisiteChange } value="" id="defaultCheck1"></input>
-                    <label class="form-check-label" for="defaultCheck1" >Is a Pre-Requisite?</label>
+                    <label class="form-check-label" for="defaultCheck1" >Are there any prerequisites?</label>
                 </div>
                 {this.state.preReq ? <div class="form-group">
-                    <label >Enter the PreRequisites for the class</label>
-                    <textarea className = "form-control post-editor-input" value={this.state.oneClass} onChange={ this.handleClassInputChange }/>
+                    <label >Enter the Prerequisites for the class</label>
+                    <textarea className = "form-control post-editor-input" value={this.state.preReqName} onChange={ this.handlePreReqInputChange }/>
                     <button type="button" class="btn btn-primary" onClick = { this.addClass } > Enter </button>
                 </div> : null}
                     <button type="button" class="btn btn-primary" onClick = { this.addClass } > Clear List </button>
