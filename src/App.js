@@ -1,36 +1,49 @@
 import React, { Component } from 'react';
 import './App.css';
-import ThreadDisplay from './ThreadDisplay/component/ThreadDisplay';
+// import ThreadDisplay from './ThreadDisplay/component/ThreadDisplay';
 import Home from './Home/component/Home';
-import firebase from 'firebase/app';
+import fire from "./Firebase/firebase"
 import 'firebase/database';
-
+import './SignIn/component/Signin'
+import SignIn from './SignIn/component/Signin';
 
 class App extends Component{
   constructor(props) {
     super(props);
-    const config = {
-      apiKey: "AIzaSyBXDlxQER-pBOXJ7JZ-5XmouMOYSMFCEog",
-      authDomain: "hackmit2020-b2f40.firebaseapp.com",
-      databaseURL: "https://hackmit2020-b2f40.firebaseio.com",
-      projectId: "hackmit2020-b2f40",
-      storageBucket: "hackmit2020-b2f40.appspot.com",
-      messagingSenderId: "451276256159",
-      appId: "1:451276256159:web:cd825ae052765b2ecc83aa"
-    };
-    if(!firebase.apps.length){
-      firebase.initializeApp(config);
-      
+    this.state = {
+      user: {},
     }
-    this.db = firebase.database();
-    
-
+    this.db = fire.database();
   }
+
+  componentDidMount(){
+    this.authListener();
+  }
+  
+  authListener() {
+    fire.auth().onAuthStateChanged((user) => {
+      //console.log(user);
+      if(user){
+        this.setState({ user });
+      //  localStorage.setItem('user', user.uid);
+      }else {
+        this.setState({ user: null });
+        //localStorage.removeItem('user');
+      }
+      // <ThreadDisplay database = { this.db } />
+    });
+  }
+  
+
   render(){
     return (
+      
       <React.Fragment> 
-        <Home />
-        <ThreadDisplay database = { this.db } />
+        <div>
+        {this.state.user ? (<Home />) : (<SignIn />)}
+        </div>
+        
+        
       </React.Fragment>
         
     );

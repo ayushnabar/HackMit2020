@@ -9,6 +9,7 @@ class ThreadDisplay extends Component {
         this.databaseRef = this.props.database.ref().child('post');
         this.addPost = this.addPost.bind(this);
         this.updateLocalState = this.updateLocalState.bind(this);
+
         this.state = {
           posts: [],
         }

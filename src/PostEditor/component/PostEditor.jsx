@@ -27,6 +27,7 @@ class PostEditor extends Component{
                 <div className = "panel-body">
                     <textarea className = "form-control post-editor-input" value={this.state.newPostBody} onChange={this.handlePostEditorInputChange}/>
                     <button className="btn btn-success post-editor-button" onClick={this.createPost}>Post</button>
+                    
                 </div>
             </div>
         )
