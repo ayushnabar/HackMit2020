@@ -188,12 +188,7 @@ class Home extends Component {
                         { this.state.college }
                     </div>
                 <button onClick={this.logout} > Logout</button> 
-                <div>
-                    <ul class="list-group">
-                        { /* make a cool table based on whether a prerequitsite */
-                        this.state.classes.map((course, index) => <li key={index}>{course.name}, {course.preReq ? "hellooo" : "nooo"}</li>)}
-                    </ul>
-                </div>
+                
                 <div id="planner">
                     <Planner courses = {this.state.classes} />
                 </div>
