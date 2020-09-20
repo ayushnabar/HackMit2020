@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import fire from '../../Firebase/firebase';
 import '../../css/signin.css';
+import history from '../../history';
 
 class SignIn extends Component{
     constructor(props){
@@ -17,7 +18,7 @@ class SignIn extends Component{
     login(e){
         e.preventDefault();
         fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u) => 
-        {}).catch((error)=> {
+        {history.replace('/');}).catch((error)=> {
             console.log(error);
         });
     }
@@ -28,6 +29,7 @@ class SignIn extends Component{
         .catch((error) => {
             console.log(error);
         })
+        
     }
     handleChange(e){
         this.setState({ [e.target.name]: e.target.value});
