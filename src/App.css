@@ -4,6 +4,9 @@
 .post-body {
   	margin: 1em 20%;
 }
+#table {
+	
+}
 @media(max-width: 900px) {
   	.post-edditor{
     	margin: 0;

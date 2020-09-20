@@ -5,6 +5,7 @@ import history from '../../history'
 import {Course} from '../../Info/component/course.js'
 import Table from 'react-bootstrap/Table';
 import '../../css/home.css'
+import Planner from '../../Planner/component/table.jsx'
 
 class Home extends Component {
     constructor(props){
@@ -193,48 +194,13 @@ class Home extends Component {
                         { /* make a cool table based on whether a prerequitsite */this.state.classes.map((course, index) => <li key={index}>{course.name}, {course.preReq ? "hellooo" : "nooo"}</li>)}
                     </ul>
                 </div>
-                <div>
-                <Table responsive="sm">
-    <thead>
-      <tr>
-        {this.state.quarter ? <th>Quarter</th> : <th>Semester</th>}
-        <th>Class Name</th>
-        <th>Units</th>
-        <th>Type</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>1</td>
-        <td></td>
-        <td>Table cell</td>
-        <td>Table cell</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>Table cell</td>
-        <td>Table cell</td>
-        <td>Table cell</td>
-        <td>Table cell</td>
-        <td>Table cell</td>
-        <td>Table cell</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>Table cell</td>
-        <td>Table cell</td>
-        <td>Table cell</td>
-        <td>Table cell</td>
-        <td>Table cell</td>
-        <td>Table cell</td>
-      </tr>
-    </tbody>
-  </Table>
-        </div>
-            </div>
+                    <div>
+                        <Planner classes = {this.state.classses} />
+                    </div>
+                </div>
             
         )
     }
-}   
+}
 
 export default Home;
