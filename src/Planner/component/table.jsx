@@ -15,18 +15,22 @@ class Planner extends Component {
       			<div class="row">
 	        		<div class="col">
 	        			Course
+	        			<hr/>
 	        			{this.props.courses.map((course, index) => <li key={index}> {course.name} </li>)}
 	        		</div>
 	        		<div class="col">
 	        			Units
+	        			<hr/>
 	        			{this.props.courses.map((course, index) => <li key={index}> {course.units} </li>)}
 	        		</div>
 	        		<div class="col">
 	        			Prerequisites
+	        			<hr/>
 	        			{this.props.courses.map((course, index) => <li key={index}> {course.prereqs[0]} </li>)}
 	        		</div>
 	        		<div class="col">
 	        			Term
+	        			<hr/>
 	        			{this.props.courses.map((course, index) => <li key={index}> {course.term} </li>)}
 	        		</div>
 	        	</div>
