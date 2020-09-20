@@ -1,7 +1,7 @@
 
 import React, {Component} from 'react';
 import fire from '../../Firebase/firebase.js';
-import user from '../../Firebase/firebase.js';
+import history from '../../history'
 import {Course} from '../../Info/component/course.js'
 import Table from 'react-bootstrap/Table';
 import '../../css/home.css'
@@ -181,7 +181,7 @@ class Home extends Component {
                     <button type="button" class="btn btn-primary" onClick = { this.addClass } > Enter </button>
                 </div> : null}
                     <button type="button" class="btn btn-primary" onClick = { this.addClass } > Clear List </button>
-                    <button type="button" class="btn btn-primary" onClick = { this.generateSchedule } > Generate </button>
+                    <button type="button" class="btn btn-primary" onClick={() => history.replace('/planner')} > Generate </button>
                     <div>
                         { this.state.college }
                     </div>
