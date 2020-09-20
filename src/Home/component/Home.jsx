@@ -154,18 +154,12 @@ class Home extends Component {
     render() {
         
         return( 
-<<<<<<< HEAD
             <div>
-               <CollegeInput />
-=======
-            
-            <div>
-               <div class="form-group">
+                <div class="form-group">
                     <label for="exampleFormControlInput1">College</label>
                     <textarea className = "form-control post-editor-input" value={ this.state.college } onChange={ this.handleCollegeInputChange }/>
                     <button type="button" class="btn btn-primary" onClick = { this.addCollege } > Add College Name </button>
                 </div>
->>>>>>> d2751387789bcf0c1a1b2ac03259776c492f5573
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Enter Unit Cap</label>
                     <textarea className = "form-control post-editor-input" value={this.state.toShow ? this.state.unitCap : ""} onChange={ this.handleUnitInputChange }/>
