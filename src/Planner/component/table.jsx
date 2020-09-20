@@ -28,13 +28,13 @@ class Planner extends Component {
 	        	</div>
 	        	<div class="row">
 	        		<div class="col">
-                {this.props.courses.map((course, index) => <li key={index}> {course.name}, </li>)}
+                {this.props.courses.map((course, index) => <li key={index}> {course.name} </li>)}
 	        		</div>
 	        		<div class="col">
-              {this.props.courses.map((course, index) => <li key={index}> {course.units}, </li>)}
+              {this.props.courses.map((course, index) => <li key={index}> {course.units} </li>)}
 	        		</div>
 	        		<div class="col">
-              {this.props.courses.map((course, index) => <li key={index}> {course.prereqs[0]}, </li>)}
+              {this.props.courses.map((course, index) => <li key={index}> {course.prereqs[0]} </li>)}
 	        		</div>
 	        	</div>
 	        	<div class="row">
