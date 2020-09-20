@@ -14,35 +14,20 @@ class Planner extends Component {
       		<div class="container-fluid" id="table">
       			<div class="row">
 	        		<div class="col">
-                
-	        		</div>
-	        		<div class="col">
 	        			Course
+	        			{this.props.courses.map((course, index) => <li key={index}> {course.name} </li>)}
 	        		</div>
 	        		<div class="col">
 	        			Units
+	        			{this.props.courses.map((course, index) => <li key={index}> {course.units} </li>)}
 	        		</div>
 	        		<div class="col">
 	        			Prerequisites
-	        		</div>
-	        	</div>
-	        	<div class="row">
-	        		<div class="col">
-                {this.props.courses.map((course, index) => <li key={index}> {course.name} </li>)}
+	        			{this.props.courses.map((course, index) => <li key={index}> {course.prereqs[0]} </li>)}
 	        		</div>
 	        		<div class="col">
-              {this.props.courses.map((course, index) => <li key={index}> {course.units} </li>)}
-	        		</div>
-	        		<div class="col">
-              {this.props.courses.map((course, index) => <li key={index}> {course.prereqs[0]} </li>)}
-	        		</div>
-	        	</div>
-	        	<div class="row">
-	        		<div class="col">
-	        		</div>
-	        		<div class="col">
-	        		</div>
-	        		<div class="col">
+	        			Term
+	        			{this.props.courses.map((course, index) => <li key={index}> {course.term} </li>)}
 	        		</div>
 	        	</div>
       		</div>
