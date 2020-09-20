@@ -3,9 +3,8 @@ import React, {Component} from 'react';
 import fire from '../../Firebase/firebase.js';
 import history from '../../history'
 import {Course} from '../../Info/component/course.js'
-import Table from 'react-bootstrap/Table';
+import Planner from '../../Planner/component/table';
 import '../../css/home.css'
-import Planner from '../../Planner/component/table.jsx'
 
 class Home extends Component {
     constructor(props){
@@ -45,7 +44,7 @@ class Home extends Component {
             SeniorWinter: [],
             SeniorSpring: [],
             SeniorSummer: [],
-            fill: "",
+            fill: "hello",
             preReq: false,
             toShow: true,
             summer: true,
@@ -191,16 +190,17 @@ class Home extends Component {
                 <button onClick={this.logout} > Logout</button> 
                 <div>
                     <ul class="list-group">
-                        { /* make a cool table based on whether a prerequitsite */this.state.classes.map((course, index) => <li key={index}>{course.name}, {course.preReq ? "hellooo" : "nooo"}</li>)}
+                        { /* make a cool table based on whether a prerequitsite */
+                        this.state.classes.map((course, index) => <li key={index}>{course.name}, {course.preReq ? "hellooo" : "nooo"}</li>)}
                     </ul>
                 </div>
-                    <div>
-                        <Planner classes = {this.state.classses} />
-                    </div>
-                </div>
+                <div>
+                <Planner courses = {this.state.classes} />
+        </div>
+            </div>
             
         )
     }
-}
+}   
 
 export default Home;

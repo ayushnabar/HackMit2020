@@ -1,13 +1,20 @@
+
 import React, {Component} from 'react';
-import fire from '../../Firebase/firebase.js';
+// import fire from '../../Firebase/firebase.js';
+// import Home from '../../Home/component/Home';
+// import {Course} from '../../Info/component/course';
 
 class Planner extends Component {
+    // constructor(props){
+    //   super(props);
+    // }
+    
   	render(){
     	return (
       		<div class="container-fluid" id="table">
       			<div class="row">
 	        		<div class="col">
-	        			Term
+                
 	        		</div>
 	        		<div class="col">
 	        			Course

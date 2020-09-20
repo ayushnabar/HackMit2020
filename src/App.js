@@ -6,6 +6,7 @@ import fire from "./Firebase/firebase"
 import 'firebase/database';
 import './SignIn/component/Signin'
 import SignIn from './SignIn/component/Signin';
+import history from './history';
 
 class App extends Component{
   constructor(props) {
