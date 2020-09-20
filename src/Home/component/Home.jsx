@@ -150,7 +150,9 @@ class Home extends Component {
         }
     }
     logout(){
+        
         fire.auth().signOut();
+        history.replace('/signin');
     }
     render() {
         
