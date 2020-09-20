@@ -108,7 +108,7 @@ class Home extends Component {
     }
     addClass(){
         if(this.state.oneClass.length > 0 ){
-            var newCourse = new Course(this.state.preReq, 4, this.state.oneClass, this.state.preReqList);
+            var newCourse = new Course(this.state.preReq, 4, this.state.oneClass, this.state.preReqList, "Fall");
             var toUpdate = [];
             const names = this.state.classes;
             names.push(newCourse);
