@@ -183,7 +183,7 @@ class Home extends Component {
                     <button type="button" class="btn btn-primary" onClick = { this.addClass } > Enter </button>
                 </div> : null}
                     <button type="button" class="btn btn-primary" onClick = { this.addClass } > Clear List </button>
-                    <button type="button" class="btn btn-primary" onClick={() => history.replace('/planner')} > Generate </button>
+                    <button type="button" class="btn btn-primary" onClick={ this.printTable } > Generate </button>
                     <div>
                         { this.state.college }
                     </div>
@@ -194,9 +194,9 @@ class Home extends Component {
                         this.state.classes.map((course, index) => <li key={index}>{course.name}, {course.preReq ? "hellooo" : "nooo"}</li>)}
                     </ul>
                 </div>
-                <div>
-                <Planner courses = {this.state.classes} />
-        </div>
+                <div id="planner">
+                    <Planner courses = {this.state.classes} />
+                </div>
             </div>
             
         )
