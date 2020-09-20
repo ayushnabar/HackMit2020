@@ -4,6 +4,7 @@ import fire from '../../Firebase/firebase.js';
 import user from '../../Firebase/firebase.js';
 import {Course} from '../../Info/component/course.js'
 import Table from 'react-bootstrap/Table';
+import '../../css/home.css'
 
 class Home extends Component {
     constructor(props){
@@ -154,7 +155,7 @@ class Home extends Component {
     render() {
         
         return( 
-            <div>
+            <div id="home-page">
                 <div class="form-group">
                     <label for="exampleFormControlInput1">College</label>
                     <textarea className = "form-control post-editor-input" value={ this.state.college } onChange={ this.handleCollegeInputChange }/>
