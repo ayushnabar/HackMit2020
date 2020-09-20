@@ -47,6 +47,7 @@ class Home extends Component {
             preReq: false,
             toShow: true,
             summer: true,
+            quarter: true,
         }
     }
 
@@ -119,6 +120,7 @@ class Home extends Component {
             this.setState({
                 classes: names,
                 oneClass: "",
+                preReqName: "",
                 preReqList: [],
             });
         }else{
@@ -183,178 +185,49 @@ class Home extends Component {
                     <div>
                         { this.state.college }
                     </div>
-                <button onClick={this.logout} > Logout</button>
+                <button onClick={this.logout} > Logout</button> 
                 <div>
                     <ul class="list-group">
                         { /* make a cool table based on whether a prerequitsite */this.state.classes.map((course, index) => <li key={index}>{course.name}, {course.preReq ? "hellooo" : "nooo"}</li>)}
                     </ul>
                 </div>
                 <div>
-            <Table responsive="sm">
-                <thead>
-                <tr>
-                    <th>1st</th>
-                    <th>Fall</th>
-                    <th>Winter</th>
-                    <th>Spring</th>
-                    {this.state.summer ? <th>Summer</th> : null}
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    {this.state.summer ? <th>Summer</th> : null}
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    {this.state.summer ? <th>Summer</th> : null}
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    {this.state.summer ? <th>Summer</th> : null}
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    {this.state.summer ? <th>Summer</th> : null}
-                </tr>
-                </tbody>
-            </Table>
-            <Table responsive="sm">
-                <thead>
-                <tr>
-                    <th>2nd</th>
-                    <th>Fall</th>
-                    <th>Winter</th>
-                    <th>Spring</th>
-                    {this.state.summer ? <th>Summer</th> : null}
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    {this.state.summer ? <th>Summer</th> : null}
-                    
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    {this.state.summer ? <th>Summer</th> : null}
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    {this.state.summer ? <th>Summer</th> : null}
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    {this.state.summer ? <th>Summer</th> : null}
-                </tr>
-                </tbody>
-            </Table>
-            <Table responsive="sm">
-                <thead>
-                <tr>
-                    <th>3rd</th>
-                    <th>Fall</th>
-                    <th>Winter</th>
-                    <th>Spring</th>
-                    {this.state.summer ? <th>Summer</th> : null}
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    {this.state.summer ? <th>Summer</th> : null}
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    {this.state.summer ? <th>Summer</th> : null}
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    {this.state.summer ? <th>Summer</th> : null}
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    {this.state.summer ? <th>Summer</th> : null}
-                </tr>
-                </tbody>
-            </Table>
-            <Table responsive="sm">
-                <thead>
-                <tr>
-                    <th>4th</th>
-                    <th>Fall</th>
-                    <th>Winter</th>
-                    <th>Spring</th>
-                    {this.state.summer ? <th>Summer</th> : null}
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    {this.state.summer ? <th>Summer</th> : null}
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    {this.state.summer ? <th>Summer</th> : null}
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    {this.state.summer ? <th>Summer</th> : null}
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    {this.state.summer ? <th>Summer</th> : null}
-                </tr>
-                </tbody>
-            </Table>
+                <Table responsive="sm">
+    <thead>
+      <tr>
+        {this.state.quarter ? <th>Quarter</th> : <th>Semester</th>}
+        <th>Class Name</th>
+        <th>Units</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td></td>
+        <td>Table cell</td>
+        <td>Table cell</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Table cell</td>
+        <td>Table cell</td>
+        <td>Table cell</td>
+        <td>Table cell</td>
+        <td>Table cell</td>
+        <td>Table cell</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Table cell</td>
+        <td>Table cell</td>
+        <td>Table cell</td>
+        <td>Table cell</td>
+        <td>Table cell</td>
+        <td>Table cell</td>
+      </tr>
+    </tbody>
+  </Table>
         </div>
             </div>
             
