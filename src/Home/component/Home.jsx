@@ -18,7 +18,7 @@ class Home extends Component {
         this.logout = this.logout.bind(this);
         this.addCollege = this.addCollege.bind(this);
         this.handleCollegeInputChange = this.handleCollegeInputChange.bind(this);
-        
+        this.generate = this.generate.bind(this);
         this.state = {
             user: fire.auth().currentUser,
             college: "",
@@ -49,6 +49,7 @@ class Home extends Component {
             toShow: true,
             summer: true,
             quarter: true,
+            showPlanner: false,
         }
     }
 
@@ -149,6 +150,9 @@ class Home extends Component {
             this.state.orderedList.push(this.state.nonPreReqList[i]);
         }
     }
+    generate(){
+        this.setState({showPlanner: true})
+    }
     logout(){
         
         fire.auth().signOut();
@@ -183,14 +187,14 @@ class Home extends Component {
                     <button type="button" class="btn btn-primary" onClick = { this.addClass } > Enter </button>
                 </div> : null}
                     <button type="button" class="btn btn-primary" onClick = { this.addClass } > Clear List </button>
-                    <button type="button" class="btn btn-primary" onClick={ this.printTable } > Generate </button>
+                    <button type="button" class="btn btn-primary" onClick={ this.generate } > Generate </button>
                     <div>
                         { this.state.college }
                     </div>
                 <button onClick={this.logout} > Logout</button> 
                 
                 <div id="planner">
-                    <Planner courses = {this.state.classes} />
+                    {this.state.showPlanner ? <Planner courses = {this.state.classes} /> : null}
                 </div>
             </div>
             
