@@ -5,6 +5,7 @@ import history from '../../history'
 import {Course} from '../../Info/component/course.js'
 import Planner from '../../Planner/component/table';
 import '../../css/home.css'
+import ThreadDisplay from '../../ThreadDisplay/component/ThreadDisplay.jsx';
 
 class Home extends Component {
     constructor(props){
@@ -50,6 +51,7 @@ class Home extends Component {
             summer: true,
             quarter: true,
             showPlanner: false,
+            showDiscussion: false,
         }
     }
 
@@ -195,10 +197,11 @@ class Home extends Component {
                         { this.state.college }
                     </div>
                 <button type="button" class="btn btn-warning" onClick={this.logout} > Logout</button> 
-                
+                <button type="button" class="btn btn-success" onClick={ this.generate } > Discussion </button>
                 <div id="planner">
                     {this.state.showPlanner ? <Planner courses = {this.state.classes} /> : null}
                 </div>
+                {this.state.showDiscussion ? <ThreadDisplay /> : null}
             </div>
             
         )
