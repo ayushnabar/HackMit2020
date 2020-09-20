@@ -14,6 +14,7 @@ class App extends Component{
       user: {},
     }
     this.db = fire.database();
+    
   }
 
   componentDidMount(){
@@ -40,7 +41,7 @@ class App extends Component{
       
       <React.Fragment> 
         <div>
-        {this.state.user ? (<Home />) : (<SignIn />)}
+        {this.state.user ? (<Home database = { this.db }/>) : (<SignIn />)}
         </div>
         
         

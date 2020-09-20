@@ -1,8 +1,7 @@
 
 import React, {Component} from 'react';
 import fire from '../../Firebase/firebase.js';
-// import user from '../../Firebase/firebase.js';
-import CollegeInput from '../../Info/component/college';
+import user from '../../Firebase/firebase.js';
 import {Course} from '../../Info/component/course.js'
 import Table from 'react-bootstrap/Table';
 
@@ -16,8 +15,11 @@ class Home extends Component {
         this.handlePreReqInputChange = this.handlePreReqInputChange.bind(this);
         this.generateSchedule = this.generateSchedule.bind(this);
         this.logout = this.logout.bind(this);
-        //this.addPreReq = this.addPreReq.bind(this);
+        this.addCollege = this.addCollege.bind(this);
+        this.handleCollegeInputChange = this.handleCollegeInputChange.bind(this);
+        
         this.state = {
+            user: fire.auth().currentUser,
             college: "",
             oneClass: "",
             unitCap: 0,
@@ -40,13 +42,15 @@ class Home extends Component {
             SeniorFall: [],
             SeniorWinter: [],
             SeniorSpring: [],
-            SenioSummer: [],
+            SeniorSummer: [],
             fill: "",
             preReq: false,
             toShow: true,
             summer: true,
+            quarter: true,
         }
     }
+
     componentWillMount(){
         //update database
     }
@@ -57,6 +61,7 @@ class Home extends Component {
         });
 
     }
+
     handlePreReqInputChange(event){
         var temp = event.target.value;
         var courses = temp.split("\n");
@@ -73,6 +78,22 @@ class Home extends Component {
         });
 
     }
+    addCollege(){
+        const temp = this.state.college;
+        fire.database().ref('users/'+fire.auth().currentUser.uid).update({
+            college: temp,
+        })
+        //add college to users firebase
+        this.setState({
+           college: "",
+        });
+    }
+    handleCollegeInputChange(event){
+        console.log(event.target.value );
+        this.setState({
+            college: event.target.value,
+        })  
+    }
     handlePreRequisiteChange(event){
         if(event.target.checked){
             this.setState({
@@ -87,16 +108,25 @@ class Home extends Component {
     addClass(){
         if(this.state.oneClass.length > 0 ){
             var newCourse = new Course(this.state.preReq, 4, this.state.oneClass, this.state.preReqList);
+            var toUpdate = [];
             const names = this.state.classes;
             names.push(newCourse);
+            for(var i = 0; i < names.length; i++){
+                toUpdate.push(names[i].name)
+            }
+            fire.database().ref('users/'+fire.auth().currentUser.uid).update({
+                classes: toUpdate,
+            })
             this.setState({
                 classes: names,
                 oneClass: "",
+                preReqName: "",
                 preReqList: [],
             });
         }else{
             //render a popu
         }
+        
     }
     addUnitCap(){
         this.setState({
@@ -115,16 +145,27 @@ class Home extends Component {
         //class only has 1 prereq
         //list of pre requisites
         for(let i = 0; i < this.state.nonPreReqList.length; i++){
-            
+            this.state.orderedList.push(this.state.nonPreReqList[i]);
         }
     }
     logout(){
         fire.auth().signOut();
     }
     render() {
+        
         return( 
-            <div id="home-page">
+<<<<<<< HEAD
+            <div>
                <CollegeInput />
+=======
+            
+            <div>
+               <div class="form-group">
+                    <label for="exampleFormControlInput1">College</label>
+                    <textarea className = "form-control post-editor-input" value={ this.state.college } onChange={ this.handleCollegeInputChange }/>
+                    <button type="button" class="btn btn-primary" onClick = { this.addCollege } > Add College Name </button>
+                </div>
+>>>>>>> d2751387789bcf0c1a1b2ac03259776c492f5573
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Enter Unit Cap</label>
                     <textarea className = "form-control post-editor-input" value={this.state.toShow ? this.state.unitCap : ""} onChange={ this.handleUnitInputChange }/>
@@ -149,178 +190,49 @@ class Home extends Component {
                     <div>
                         { this.state.college }
                     </div>
-                <button onClick={this.logout} > Logout</button>
+                <button onClick={this.logout} > Logout</button> 
                 <div>
                     <ul class="list-group">
                         { /* make a cool table based on whether a prerequitsite */this.state.classes.map((course, index) => <li key={index}>{course.name}, {course.preReq ? "hellooo" : "nooo"}</li>)}
                     </ul>
                 </div>
                 <div>
-            <Table responsive="sm">
-                <thead>
-                <tr>
-                    <th>1st</th>
-                    <th>Fall</th>
-                    <th>Winter</th>
-                    <th>Spring</th>
-                    {this.state.summer ? <th>Summer</th> : null}
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    {this.state.summer ? <th>Summer</th> : null}
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    {this.state.summer ? <th>Summer</th> : null}
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    {this.state.summer ? <th>Summer</th> : null}
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    {this.state.summer ? <th>Summer</th> : null}
-                </tr>
-                </tbody>
-            </Table>
-            <Table responsive="sm">
-                <thead>
-                <tr>
-                    <th>2nd</th>
-                    <th>Fall</th>
-                    <th>Winter</th>
-                    <th>Spring</th>
-                    {this.state.summer ? <th>Summer</th> : null}
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    {this.state.summer ? <th>Summer</th> : null}
-                    
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    {this.state.summer ? <th>Summer</th> : null}
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    {this.state.summer ? <th>Summer</th> : null}
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    {this.state.summer ? <th>Summer</th> : null}
-                </tr>
-                </tbody>
-            </Table>
-            <Table responsive="sm">
-                <thead>
-                <tr>
-                    <th>3rd</th>
-                    <th>Fall</th>
-                    <th>Winter</th>
-                    <th>Spring</th>
-                    {this.state.summer ? <th>Summer</th> : null}
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    {this.state.summer ? <th>Summer</th> : null}
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    {this.state.summer ? <th>Summer</th> : null}
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    {this.state.summer ? <th>Summer</th> : null}
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    {this.state.summer ? <th>Summer</th> : null}
-                </tr>
-                </tbody>
-            </Table>
-            <Table responsive="sm">
-                <thead>
-                <tr>
-                    <th>4th</th>
-                    <th>Fall</th>
-                    <th>Winter</th>
-                    <th>Spring</th>
-                    {this.state.summer ? <th>Summer</th> : null}
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    {this.state.summer ? <th>Summer</th> : null}
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    {this.state.summer ? <th>Summer</th> : null}
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    {this.state.summer ? <th>Summer</th> : null}
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    <td>Table cell</td>
-                    {this.state.summer ? <th>Summer</th> : null}
-                </tr>
-                </tbody>
-            </Table>
+                <Table responsive="sm">
+    <thead>
+      <tr>
+        {this.state.quarter ? <th>Quarter</th> : <th>Semester</th>}
+        <th>Class Name</th>
+        <th>Units</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td></td>
+        <td>Table cell</td>
+        <td>Table cell</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Table cell</td>
+        <td>Table cell</td>
+        <td>Table cell</td>
+        <td>Table cell</td>
+        <td>Table cell</td>
+        <td>Table cell</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Table cell</td>
+        <td>Table cell</td>
+        <td>Table cell</td>
+        <td>Table cell</td>
+        <td>Table cell</td>
+        <td>Table cell</td>
+      </tr>
+    </tbody>
+  </Table>
         </div>
             </div>
             
