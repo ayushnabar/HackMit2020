@@ -162,20 +162,23 @@ class Home extends Component {
         
         return( 
             <div id="home-page">
+                <h1 id="title">
+                    Kana: Curriculum Planner
+                </h1>
                 <div class="form-group">
                     <label for="exampleFormControlInput1">College</label>
                     <textarea className = "form-control post-editor-input" value={ this.state.college } onChange={ this.handleCollegeInputChange }/>
-                    <button type="button" class="btn btn-primary" onClick = { this.addCollege } > Add College Name </button>
+                    <button type="button" class="btn btn-dark" onClick = { this.addCollege } > Add College Name </button>
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Enter Unit Cap</label>
                     <textarea className = "form-control post-editor-input" value={this.state.toShow ? this.state.unitCap : ""} onChange={ this.handleUnitInputChange }/>
-                    <button type="button" class="btn btn-primary" onClick = {() => this.addUnitCap()}> Add Unit Cap </button>
+                    <button type="button" class="btn btn-dark" onClick = {() => this.addUnitCap()}> Add Unit Cap </button>
                 </div>
                 <div class="form-group">
-                    <label >Class {this.state.classes.length}</label>
+                    <label >Class: {this.state.classes.length + 1}</label>
                     <textarea className = "form-control post-editor-input" value={this.state.oneClass} onChange={ this.handleClassInputChange }/>
-                    {!this.state.preReq ? <button type="button" class="btn btn-primary" onClick = { this.addClass } > Add Class Name </button> : null}
+                    {!this.state.preReq ? <button type="button" class="btn btn-dark" onClick = { this.addClass } > Add Class Name </button> : null}
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" onChange={ this.handlePreRequisiteChange } value="" id="defaultCheck1"></input>
@@ -184,14 +187,14 @@ class Home extends Component {
                 {this.state.preReq ? <div class="form-group">
                     <label >Enter the Prerequisites for the class</label>
                     <textarea className = "form-control post-editor-input" value={this.state.preReqName} onChange={ this.handlePreReqInputChange }/>
-                    <button type="button" class="btn btn-primary" onClick = { this.addClass } > Enter </button>
+                    <button type="button" class="btn btn-dark" onClick = { this.addClass } > Enter </button>
                 </div> : null}
-                    <button type="button" class="btn btn-primary" onClick = { this.addClass } > Clear List </button>
-                    <button type="button" class="btn btn-primary" onClick={ this.generate } > Generate </button>
+                    <button type="button" class="btn btn-danger" onClick = { this.addClass } > Clear List </button>
+                    <button type="button" class="btn btn-success" onClick={ this.generate } > Generate </button>
                     <div>
                         { this.state.college }
                     </div>
-                <button onClick={this.logout} > Logout</button> 
+                <button type="button" class="btn btn-warning" onClick={this.logout} > Logout</button> 
                 
                 <div id="planner">
                     {this.state.showPlanner ? <Planner courses = {this.state.classes} /> : null}

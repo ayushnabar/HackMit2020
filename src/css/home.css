@@ -1,5 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Raleway&display=swap" rel="stylesheet");
 
+html, body {
+	background-color: #BAD7FF;
+}
+
 #home-page {
 	padding: 50px;
+	background-color: #BAD7FF;
+	color: white;
+	font-weight: bold;
+	font-family: 'Raleway', sans-serif;
+}
+
+#home-page button {
+	margin-top: 10px;
+	margin-right: 20px;
 }
