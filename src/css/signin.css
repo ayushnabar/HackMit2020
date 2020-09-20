@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Raleway&display=swap" rel="stylesheet");
+
+#signin {
+	height: 1080px;
+	background: url("../img/books.jpg") no-repeat center center fixed;
+	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
+
+  	color: white;
+}
+#title {
+	text-align: center;
+	font-family: 'Julius Sans One', sans-serif;
+	font-size: 70px;
+	color: white;
+	font-weight: bold;
+}
+#buttons {
+	margin-top: 50px;
+	text-align: center;
+}
+#signinform {
+	padding-top: 50px;
+	margin: 0 50px;
+	font-family: 'Raleway', sans-serif;
+	color: white;
+	font-weight: bold;
+}
+#buttons button {
+	width: 49%;
+}

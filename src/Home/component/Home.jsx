@@ -123,7 +123,7 @@ class Home extends Component {
     }
     render() {
         return( 
-            <div>
+            <div id="home-page">
                <CollegeInput />
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Enter Unit Cap</label>

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import fire from '../../Firebase/firebase';
+import '../../css/signin.css';
 
 class SignIn extends Component{
     constructor(props){
@@ -33,21 +34,28 @@ class SignIn extends Component{
     }
     render(){
         return(
-            <form>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input value= {this.state.email} onChange={this.handleChange} type="email" class="form-control" name="email"
-                    id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"></input>
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input value={this.state.password} onChange={this.handleChange} type="password" name="password" 
-                    class="form-control" id="exampleInputPassword1" placeholder="Password"></input>
-                </div>
-                <button type="submit" onClick={this.login} class="btn btn-primary">Submit</button>
-                <button onClick={this.signup} style={{ marginLeft: '25px' }} className="btn btn-success">SignUp</button>
-            </form>
+            <div id="signin">
+                <form id="signinform">
+                    <h1 id="title">
+                        Kana: Curriculum Planner
+                    </h1>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input value= {this.state.email} onChange={this.handleChange} type="email" class="form-control" name="email"
+                        id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"></input>
+                        <small id="emailHelp" class="form-text">We'll never share your email with anyone else.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input value={this.state.password} onChange={this.handleChange} type="password" name="password" 
+                        class="form-control" id="exampleInputPassword1" placeholder="Password"></input>
+                    </div>
+                    <div id="buttons">
+                        <button type="submit" onClick={this.login} class="btn btn-primary">Submit</button>
+                        <button onClick={this.signup} style={{ marginLeft: '25px' }} className="btn btn-info">SignUp</button>
+                    </div>
+                </form>
+            </div>
         )
     }
 }

@@ -1,14 +1,14 @@
-.post-editor{
-  margin: 0 20%;
+.post-editor {
+  	margin: 0 20%;
 }
-.post-body{
-  margin: 1em 20%;
+.post-body {
+  	margin: 1em 20%;
 }
-@media(max-width: 900px){
-  .post-edditor{
-    margin: 0;
-  }
-  .post-body{
-    margin: 1em;
-  }
+@media(max-width: 900px) {
+  	.post-edditor{
+    	margin: 0;
+  	}
+  	.post-body{
+    	margin: 1em;
+  	}
 }
